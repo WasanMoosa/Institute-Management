@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SAWAN UNIVERSITY</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/sweetalert2.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+  <h1 class="logo me-auto"><a href="index.html">SAWAN</a></h1>
+  <!-- Uncomment below if you prefer to use an image logo -->
+  <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png"></a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" id="logout" > log out</a></li>
+          <li class="dropdown"><a href="#"><span>Portal</span> <i class="bi bi-chevron-down"></i></a>
+          
+          
+            <ul>
+              <li><a href="">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>SAWAN </h1>
+          <h2>University Strategy</h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="#about" class="btn-get-started scrollto">DISCOVER</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <div class="gallery img-fluid">
+            <div class="slide">
+              <img src="assets/img/hero-img.png" alt="Image 1">
+            </div>
+            <div class="slide">
+              <img src="assets/img/hero-img.png" alt="Image 2">
+            </div>
+            <div class="slide">
+              <img src="assets/img/hero-img.png" alt="Image 3">
+            </div>
+            <a class="prev" onclick="slide(-1)">&lt;</a>
+            <a class="next" onclick="plusSlides(1)">&gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Student Section ======= -->
+    <section id="student-mng">
+        <h1 id="student-h1"> Student Management Section </h1>
+        <div id="student-button">
+            <button id="Get-student">Get Students</button>
+            <button id="Get-one-student">Get One Student</button>
+            <button id="Register-student">Register Student</button>
+            <button id="Update-student">Update Student</button>
+            <button id="Delete-student">Delete Student</button>
+        </div>
+        <div id="Result">
+          <div class="form" id="Get-one-student-form" style="display: none">
+            <label for="id">Enter id</label>
+            <input type="text" id="idStudent" name="id" required>
+            <input id="submit-student" type="submit" value="submit">
+          </div>
+          <table id="table" style="display: none" >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <form class="form" id="register-student-form" action="http://localhost:8080/api/students" method="POST" style="display: none">
+            <label for="name">Enter name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Enter Email</label>
+            <input type="text" id="email" name="email" required>
+            <label for="image">Upload image</label>
+            <input type="file" id="image" name="image" >
+            <input type="submit" value="submit">
+        </form>
+        <form class="form" id="update-student-form" action="http://localhost:8080/api/students" method="PUT" style="display: none">
+          <label for="id">Enter id</label>
+          <input id="id-to-update" type="text" id="id" name="id" required>
+          <label for="name">Enter new name</label>
+          <input type="text" id="name2" name="name">
+          <label for="email">Enter new Email</label>
+          <input type="text" id="email2" name="email">
+          <input type="submit" value="submit">
+      </form>
+      <div class="form" id="Update-student-form" style="display: none">
+        <label for="id">Enter id to delete Student</label>
+        <input type="text" id="idStudentDelete" name="id" required>
+        <input id="submit-student-delete" type="submit" value="submit">
+       
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/js/sweetalert2.all.min.js"></script>
+ 
+ 
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+<script src="assets/js/student.js"></script>
+</body>
+
+</html>
