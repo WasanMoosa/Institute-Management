@@ -1,0 +1,22 @@
+@PostMapping (value = "/withImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Student addStudentWithImage(@RequestParam String name,
+                                       @RequestParam String email,
+                                       @RequestParam(required = false) MultipartFile file1 ) throws IOException {
+        Student student = new Student();
+        student.name=name;
+        student.email=email;
+        studentService.addStudent(student);
+
+        // TODO:
+//        FileUtils.writeByteArrayToFile(new File("./data/tmp.jpg"), image.getBytes());
+          FileUtils.writeByteArrayToFile(new File("./data/tmp.pdf"), file1.getBytes());
+
+        // Load the text of the file into a string
+        String fileContent = new String(Files.readAllBytes(Path.of(("./data/tmp.pdf"))));
+
+        // Search for the keyword in the file content
+        String keyword = "wasan";
+        boolean containsKeyword = fileContent.contains(keyword);
+        if (containsKeyword){
+            System.out.println("Good Job");
+        }
