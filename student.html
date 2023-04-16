@@ -24,6 +24,10 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/sweetalert2.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -105,9 +109,32 @@
         </div>
         <div id="Result">
           <div class="form" id="Get-one-student-form" style="display: none">
+
+          <div id="to-submit">
             <label for="id">Enter id</label>
             <input type="text" id="idStudent" name="id" required>
             <input id="submit-student" type="submit" value="submit">
+          </div>
+
+            <div class="student-profile py-4 " >
+              <div class="container">
+                    <div class="card shadow-sm" id="student-info">
+                      <div id= "for-image-and-name" class="card-header bg-transparent text-center">
+                
+                       <h3 id="name_s" ></h3>
+                      </div>
+                      <div class="card-body">
+                        <p id ="id_s" class="mb-0"><strong class="pr-1">ID:</strong></p>
+                        <p id ="email_s" class="mb-0"><strong class="pr-1">Email:</strong></p>
+                        <p class="mb-0"><strong>Job</strong> Student</p>
+                      </div>
+                 
+                    </div>
+                  </div>
+                
+             
+        
+          </div>
           </div>
           <table id="table" style="display: none" >
             <thead>
@@ -138,7 +165,7 @@
           <input type="text" id="email2" name="email">
           <input type="submit" value="submit">
       </form>
-      <div class="form" id="Update-student-form" style="display: none">
+      <div class="form" id="delete-student-form" style="display: none">
         <label for="id">Enter id to delete Student</label>
         <input type="text" id="idStudentDelete" name="id" required>
         <input id="submit-student-delete" type="submit" value="submit">

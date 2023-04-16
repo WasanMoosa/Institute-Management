@@ -3,7 +3,7 @@ const RegisterStudentForm = document.getElementById('register-student-form');
 const UpdateStudentForm = document.getElementById('update-student-form');
 const GetOneStudent = document.getElementById('Get-one-student-form');
 const tableBody = document.querySelector('table tbody');
-const DeleteStudent= document.getElementById("Update-student-form");
+const DeleteStudent= document.getElementById("delete-student-form");
 const user_ASCII= localStorage.getItem("password");
 
 document.getElementById("Get-student").addEventListener("click", (event) => {
@@ -112,17 +112,33 @@ document.getElementById("Register-student").addEventListener("click", (event) =>
   })
 
 
+
+
 document.getElementById("Get-one-student").addEventListener("click", () => {
+
+  document.getElementById("student-info").style.display="none";
   table.style.display = "none";
   DeleteStudent.style.display="none";
   RegisterStudentForm.style.display = "none";
   UpdateStudentForm.style.display = "none";
   GetOneStudent.style.display = "block";
+
 });
+
 document.getElementById("submit-student").addEventListener("click", ()=>{
+  document.getElementById("student-info").style.display="block";
+  document.getElementById("name_s").textContent = " ";
+  document.getElementById("id_s").textContent = " ";
+  document.getElementById("email_s").textContent = " ";
+  const t = document.getElementById("for-image-and-name");
+  const imgElement = t.querySelector(".profile_img");
+
+if (imgElement) {
+  t.removeChild(imgElement);
+}
+  
   tableBody.innerHTML = '';
   let id = document.getElementById("idStudent").value;
-  table.style.display = "block";
   const getStudent = (id) => {
     reqConfiq = {
         method: "GET",
@@ -135,33 +151,50 @@ document.getElementById("submit-student").addEventListener("click", ()=>{
     fetch(url, reqConfiq)
         .then((response) => { return response.json(); })
         .then((parsedRResponse) => {  
-          const tableBody = document.querySelector('table tbody');
-          const row = document.createElement('tr');
-          const nameCell = document.createElement('td');
-          const idCell = document.createElement('td');
-          const emailCell = document.createElement('td');
+          const name = parsedRResponse.name;
+          const studentID = parsedRResponse.id;
+          const email = parsedRResponse.email;
+          const imagePath= parsedRResponse.imagePath;
+          console.log(parsedRResponse)
     
-            nameCell.textContent = parsedRResponse.name;
-            idCell.textContent = parsedRResponse.id;
-            emailCell.textContent = parsedRResponse.email;
-    
-            row.appendChild(nameCell);
-            row.appendChild(idCell);
-            row.appendChild(emailCell);
-            tableBody.appendChild(row);
-  
-         }).catch(()=>   Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        }));
-            
           
-        }
+          // Display the student info
+          document.getElementById("name_s").textContent = `Name: ${name}`;
+          document.getElementById("id_s").innerHTML = `<strong>ID:</strong> ${studentID}`;
+          document.getElementById("email_s").innerHTML = `<strong>Email:</strong> ${email}`;
 
+          url = "http://localhost:8080"+imagePath;
+          fetch(url, reqConfiq)
+            .then((response) => { return response.blob(); })
+            .then((blobResponse) => {  
+             console.log("success");
+             const imgElement = document.createElement("img");
+            imgElement.src = URL.createObjectURL(blobResponse);
+            
+          imgElement.classList.add("profile_img")
+          t.style.display="block";
+          t.appendChild(imgElement);
+             })
+         })
+        }
+            
 getStudent(id);
+/////////////////////////////////////////////
+reqConfiq = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    'Authorization': "Basic " + user_ASCII
+  }
+}
+
+
+   ///////////////////////////////////////////
       }
 )
+
+
+
 
 document.getElementById("Update-student").addEventListener("click", () => {
   table.style.display = "none";
