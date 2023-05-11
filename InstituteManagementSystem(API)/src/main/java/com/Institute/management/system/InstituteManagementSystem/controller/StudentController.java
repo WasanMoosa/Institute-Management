@@ -58,8 +58,9 @@ public class StudentController {
         // System.out.println(Arrays.toString(image.getOriginalFilename().split(".")));
 
         if (image != null){
-            String imagePath= "./data/"+Integer.toString(student.id)+"_"+student.name+".jpg";
-            FileUtils.writeByteArrayToFile(new File(imagePath), image.getBytes());
+            String imagePathToSave= ".\\src\\main\\resources\\static\\student_images\\"+Integer.toString(student.id)+"_"+student.name+".jpg";
+            String imagePath="\\static\\student_images\\"+Integer.toString(student.id)+"_"+student.name+".jpg";
+            FileUtils.writeByteArrayToFile(new File(imagePathToSave), image.getBytes());
             savedStudent.imagePath=imagePath;
             studentService.updateStudent(savedStudent.id, savedStudent);
         }
