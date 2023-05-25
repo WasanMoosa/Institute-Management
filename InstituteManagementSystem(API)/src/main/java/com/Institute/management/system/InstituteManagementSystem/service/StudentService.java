@@ -1,6 +1,8 @@
 package com.Institute.management.system.InstituteManagementSystem.service;
 
 import com.Institute.management.system.InstituteManagementSystem.model.Student;
+import com.Institute.management.system.InstituteManagementSystem.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,31 +11,25 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class StudentService {
-    private List<Student> allStudents = new CopyOnWriteArrayList<>();
+
+    @Autowired
+    StudentRepository studentRepository;
 
     // Get all student
     public List<Student> getStudents() {
-        return allStudents;
+        return studentRepository.findAll();
     }
 
     // Get specific student
     public Optional<Student> getStudent(int id) {
-        Optional<Student> foundStudent = allStudents.stream().filter(
-                student -> {
-                    return student.id == id;
-                }).findFirst();
-        return foundStudent;
+
+        return studentRepository.findById(id);
 
     }
 
-    // Add student
-    int id = 1;
-
     public Student addStudent(Student student) {
-        student.id = this.id++;
-        allStudents.add(student);
 
-        return student;
+        return studentRepository.save(student);
     }
 
     // update student
@@ -42,6 +38,8 @@ public class StudentService {
         student.ifPresent((currStudent)-> {
             currStudent.name = updatedStudent.name;
             currStudent.email = updatedStudent.email;
+
+            studentRepository.save(currStudent);
                 }
         );
         return student;
@@ -50,7 +48,7 @@ public class StudentService {
     // Delete student
     public Optional<Student> deleteStudent(int id) {
         Optional<Student> student = getStudent(id);
-        allStudents.remove(student);
+       studentRepository.deleteById(id);
 
         return student;
     }

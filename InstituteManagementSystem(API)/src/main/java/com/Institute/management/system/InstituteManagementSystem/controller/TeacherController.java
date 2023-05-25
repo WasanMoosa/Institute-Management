@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/teachers")
@@ -24,7 +25,7 @@ public class TeacherController {
 
     // To get one teacher
     @GetMapping(path = "/{id}")
-    public Teacher getTeacher(@PathVariable int id) {
+    public Optional<Teacher> getTeacher(@PathVariable int id) {
 
         return teacherService.getTeacher(id);
     }
@@ -45,7 +46,7 @@ public class TeacherController {
 
     // Delete existing student using his id
     @DeleteMapping("/{id}")
-    public Teacher deleteTeacher(@PathVariable int id) {
+    public Optional<Teacher> deleteTeacher(@PathVariable int id) {
         teacherService.deleteTeacher(id);
         return teacherService.deleteTeacher(id);
     }
